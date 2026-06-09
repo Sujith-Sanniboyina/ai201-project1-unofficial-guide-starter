@@ -42,12 +42,12 @@ This domain provides student reviews of college professors, and provide informat
      numbers fit the structure of your documents.
      A review-heavy corpus warrants different chunking than a long FAQ. -->
 
-**Chunk size:**
+**Chunk size:** 300 characters
 
-**Overlap:**
+**Overlap:** 50 characters
 
 **Reasoning:**
-
+Most of the reviews in RMP are around that 300 character range so when chunking I can capture each individual review. Additionally, the previous class activity was also 300 character chunkings which worked well for semantic search. This amount should help match the queries with proper answers.
 ---
 
 ## Retrieval Approach
@@ -58,11 +58,18 @@ This domain provides student reviews of college professors, and provide informat
      would you weigh in choosing a different embedding model — context length, multilingual
      support, accuracy on domain-specific text, latency? -->
 
-**Embedding model:**
+**Embedding model:** all-MiniLM-L6-v2 via sentence-transformers (384-dimensional vectors, runs locally)
 
-**Top-k:**
+**Top-k:** 5 chunks per query
 
 **Production tradeoff reflection:**
+Some tradeoffs I would consider:
+
+| Model | Pros | Cons |
+all-MiniLM-L6-v2 (current)|Fast, local, free|Lower accuracy, English-only
+all-mpnet-base-v2|Higher accuracy (better at sentiment)|768-dim vectors (slower, more memory)
+text-embedding-3-small (OpenAI)|Best accuracy, handles nuance like sarcasm|Cost per query, API latency, privacy concerns
+multilingual-e5-large|Supports non-English reviews|Very large (1.2GB), slow inference
 
 ---
 
@@ -89,9 +96,9 @@ This domain provides student reviews of college professors, and provide informat
      Consider: noisy or inconsistent documents, missing source attribution, off-topic
      retrieval, chunks that split key information across boundaries. -->
 
-1.
+1. Opposite Opinions. People can say give contradicting reviews based on their experience which can have human biases and subjective viewpoints. Someone who got a good grade is more inclined to give a professor a good rating, while someone who didn't perform as well in class might give a lower rating to a professor.
 
-2.
+2. Vague reviews that don't provide any valuable insight to answer the questions stated above.
 
 ---
 
@@ -118,7 +125,19 @@ This domain provides student reviews of college professors, and provide informat
      with my specified chunk size and overlap" is a plan. -->
 
 **Milestone 3 — Ingestion and chunking:**
+I will give Claude my planning.md Chunking Strategy section (300 chars, 50 overlap, sentence-boundary awareness) and ask it to implement:
+- load_documents(data_dir) — reads all .txt files
+- clean_text(raw_text) — removes "Helpful", "Thumbs up/down", timestamps, cookie notice
+- chunk_text(cleaned_text, chunk_size=300, overlap=50) — splits with sentence-boundary preference
 
 **Milestone 4 — Embedding and retrieval:**
+I will give ChatGPT my Retrieval Approach section (all-MiniLM-L6-v2, top-k=5, ChromaDB) and my pipeline diagram, asking it to implement:
+- embed_chunks(chunks) — uses SentenceTransformer to generate 384-dim vectors
+- store_in_chromadb(chunks, embeddings, metadata) — stores with source filename and chunk_id
+- retrieve(query, k=5) — semantic search returning top chunks with distance scores
 
 **Milestone 5 — Generation and interface:**
+I will give Claude my grounded prompt requirements and ask it to implement:
+- generate_answer(query, retrieved_chunks) — uses Groq's llama-3.3-70b-versatile with strict "only from context" prompt
+- format_response(answer, sources) — ensures source attribution is visible
+- gradio_interface() — simple web UI with input box, answer display, source list
