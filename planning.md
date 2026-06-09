@@ -24,12 +24,12 @@ This domain provides student reviews of college professors, and provide informat
 |---|--------|-------------|-----------------|
 | 1 |Rate My Professors|Stefano Lonardi|https://www.ratemyprofessors.com/professor/169726|
 | 2 |Rate My Professors|Derek Mkhaiel|https://www.ratemyprofessors.com/professor/2863312|
-| 3 |Rate My Professors|Thomas Kuhlman|https://www.ratemyprofessors.com/professor/2237902|
-| 4 |Rate My Professors|Marko Spasojevic|https://www.ratemyprofessors.com/professor/2202003|
-| 5 |Rate My Professors|Matthew Lang|https://www.ratemyprofessors.com/professor/2463697|
-| 6 |Rate My Professors|Mariam Salloum|https://www.ratemyprofessors.com/professor/2893094|
-| 7 |Rate My Professors|Patrick Miller|https://www.ratemyprofessors.com/professor/2781584|
-| 8 |Rate My Professors|Amey Bhangale|https://www.ratemyprofessors.com/professor/238914|
+| 3 |Rate My Professors|Thomas Kuhlman|https://www.ratemyprofessors.com/professor/2471296|
+| 4 |Rate My Professors|Marko Spasojevic|https://www.ratemyprofessors.com/professor/2237902|
+| 5 |Rate My Professors|Matthew Lang|https://www.ratemyprofessors.com/professor/2202003|
+| 6 |Rate My Professors|Mariam Salloum|https://www.ratemyprofessors.com/professor/2463697|
+| 7 |Rate My Professors|Patrick Miller|https://www.ratemyprofessors.com/professor/2893094|
+| 8 |Rate My Professors|Amey Bhangale|https://www.ratemyprofessors.com/professor/2781584|
 | 9 |Rate My Professors|Eamonn Keogh|https://www.ratemyprofessors.com/professor/238914|
 | 10 |Rate My Professors|Allan Knight|https://www.ratemyprofessors.com/professor/2955403|
 
